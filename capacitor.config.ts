@@ -1,9 +1,15 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
+  appId: 'com.studflow.app',
   appName: 'studFlow',
-  webDir: 'www'
+  webDir: 'www',
+  plugins: {
+    Keyboard: {
+      resize: 'body', 
+      style: 'dark'  
+    }
+  }
 };
 
 export default config;

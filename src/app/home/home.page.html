@@ -1,20 +1,89 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
+<ion-header class="ion-no-border">
+  <ion-toolbar style=" padding: 10px 5px 0 5px;">
     <ion-title>
-      Blank
+      <span style="font-weight: 800; color: #6366F1; font-size: 1.6rem;">stud</span><span style="font-weight: 300; color: #4B5563; font-size: 1.6rem;">flow</span>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding" >
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <div class="welcome-section">
+    <h1>Olá! 👋</h1>
+    <p>
+      Você tem 
+      <span class="highlight-count">{{ tarefasPendentes.length }} {{ tarefasPendentes.length === 1 ? 'tarefa' : 'tarefas' }}</span> 
+      {{ tarefasPendentes.length === 1 ? 'pendente' : 'pendentes' }} para hoje.
+    </p>
   </div>
+
+  <ion-segment value="pendentes" mode="ios" (ionChange)="mudarFiltro($event)" class="filter-segment">
+    <ion-segment-button value="pendentes">
+      <ion-label>Pendentes</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="concluidas">
+      <ion-label>Concluídas</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <ion-list lines="none" class="task-list">
+    
+    @for (tarefa of tarefasFiltradas; track tarefa.id) {
+      <ion-item-sliding #slidingItem>
+        
+        <ion-item button="true" detail="false" class="task-item" [class.item-concluido]="tarefa.concluida" (click)="mostrarDetalhes(tarefa, slidingItem)">
+          
+          <div slot="start" class="urgency-indicator" 
+          style="width: 6px; height: 35px; border-radius: 999px; margin: 0;"
+          [style.background-color]="
+            tarefa.urgencia === 'alta' ? '#EF4444' : 
+            tarefa.urgencia === 'media' ? '#F59E0B' : '#10B981'
+          ">
+          </div>
+
+          <ion-label class="ion-padding-start">
+            <h2>{{ tarefa.titulo }}</h2>
+            <p class="materia-tag">
+              <ion-icon name="sparkles-outline" color="primary"></ion-icon>
+              {{ tarefa.materia }}
+            </p>
+          </ion-label>
+
+          <ion-note slot="end" class="date-note" style="display: flex; align-items: center; gap: 4px;">
+            <ion-icon name="calendar-outline"></ion-icon>
+            {{ tarefa.dataEntrega }}
+            <ion-icon name="chevron-back-outline" style="font-size: 0.9rem; opacity: 0.5; margin-left: 4px;"></ion-icon>
+          </ion-note>
+        </ion-item>
+
+        <ion-item-options side="end">
+          @if (!tarefa.concluida) {
+            <ion-item-option color="success" class="slide-btn" (click)="concluirTarefa(tarefa.id, slidingItem)">
+              <ion-icon slot="icon-only" name="checkmark-circle-outline"></ion-icon>
+            </ion-item-option>
+          }
+          <ion-item-option color="warning" class="slide-btn" (click)="editarTarefa(tarefa, slidingItem)">
+            <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+          </ion-item-option>
+
+          <ion-item-option color="danger" class="slide-btn" (click)="excluirTarefa(tarefa.id)">
+            <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+
+      </ion-item-sliding>
+    } @empty {
+      <div class="empty-state">
+        <p>🎉 Nada por aqui! Seu fluxo de estudos está limpo.</p>
+      </div>
+    }
+
+  </ion-list>
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button style="--background: #6366F1;" (click)="abrirModalAdicionar()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
 </ion-content>

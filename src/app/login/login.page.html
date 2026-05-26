@@ -1,0 +1,50 @@
+<ion-content class="ion-padding ion-text-center">
+  
+  <div class="login-container">
+    
+    <div class="logo-area">
+      <h1><span style="font-weight: 800; color: #6366F1;">stud</span><span style="font-weight: 300; color: #4B5563;">flow</span></h1>
+      <p>Sua rotina escolar em movimento 🚀</p>
+    </div>
+
+    <div class="form-area ion-margin-top" [formGroup]="loginForm">
+      
+      <ion-item lines="none" class="input-item">
+        <ion-icon name="mail-outline" slot="start" color="medium"></ion-icon>
+        <ion-input type="email" placeholder="Seu e-mail" formControlName="email"></ion-input>
+      </ion-item>
+      
+      @if (loginForm.get('email')?.touched && loginForm.get('email')?.errors?.['email']) {
+        <p class="error-message ion-text-left" style="margin-left: 5px; color: #ef4444; font-size: 0.85rem;">
+          Insira um e-mail válido (ex: nome@gmail.com)
+        </p>
+      }
+
+      <ion-item lines="none" class="input-item ion-margin-top">
+        <ion-icon name="lock-closed-outline" slot="start" color="medium"></ion-icon>
+        <ion-input type="password" placeholder="Sua senha" formControlName="senha"></ion-input>
+      </ion-item>
+
+      @if (mensagemErro) {
+        <p class="error-message" style="color: #ef4444; font-size: 0.85rem; margin-top: 10px;">{{ mensagemErro }}</p>
+      }
+
+      <ion-button 
+        expand="block" 
+        class="btn-entrar ion-margin-top" 
+        [disabled]="loginForm.invalid"
+        (click)="submeterFormulario()">
+        {{ modoCadastro ? 'Cadastrar Conta' : 'Entrar' }}
+      </ion-button>
+
+    </div>
+
+    <div class="footer-area ion-margin-top">
+      <p style="color: #6366F1; font-weight: 600; cursor: pointer;" (click)="alternarModo()">
+        {{ modoCadastro ? 'Já tenho uma conta. Fazer Login' : 'Criar uma conta' }}
+      </p>
+    </div>
+
+  </div>
+
+</ion-content>

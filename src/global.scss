@@ -35,3 +35,9 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import '@ionic/angular/css/palettes/dark.system.css';
+
+
+.alert-detalhes-tarefa .alert-message {
+    white-space: pre-line !important;
+    line-height: 1.5; 
+  }

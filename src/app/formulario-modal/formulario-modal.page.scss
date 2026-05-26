@@ -1,0 +1,34 @@
+.label-input {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #4B5563;
+    margin: 16px 0 6px 4px;
+  }
+  
+  .modal-input-item {
+    --border-radius: 10px;
+    --padding-start: 12px;
+    box-shadow: none;
+    margin-bottom: 5px;
+    
+    ion-input, ion-select {
+      font-size: 0.95rem;
+    }
+  }
+  
+  .urgencia-segment {
+    padding: 4px;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+  
+    .btn-baixa.segment-button-checked { --background: #10B981; color: white !important; }
+    .btn-media.segment-button-checked { --background: #F59E0B; color: white !important; }
+    .btn-alta.segment-button-checked { --background: #EF4444; color: white !important; }
+  }
+  
+  .btn-salvar-tarefa {
+    --background: #6366F1;
+    --border-radius: 10px;
+    font-weight: 600;
+    height: 48px;
+  }

@@ -1,0 +1,65 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title style="font-weight: 700; color: #d8d8d8;">
+      {{ tarefa ? 'Editar Tarefa 📝' : 'Nova Tarefa 📝' }}
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="fechar()" color="medium">Cancelar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  
+  <div [formGroup]="formTarefa">
+    
+    <p class="label-input">O que você precisa fazer?</p>
+    <ion-item lines="none" class="modal-input-item">
+      <ion-input placeholder="Ex: Estudar para a prova de História" formControlName="titulo"></ion-input>
+    </ion-item>
+
+    <p class="label-input">Matéria / Disciplina</p>
+    <ion-item lines="none" class="modal-input-item">
+      <ion-input type="text" placeholder="Ex: Análise de Sistemas, Cálculo I..." formControlName="materia"></ion-input>
+    </ion-item>
+
+    <p class="label-input">Descrição / Observações</p>
+    <ion-item lines="none" class="modal-input-item textarea-item">
+      <ion-textarea 
+        placeholder="Adicione detalhes sobre o que precisa ser feito..." 
+        formControlName="descricao"
+        [autoGrow]="true"
+        rows="3">
+      </ion-textarea>
+    </ion-item>
+
+    <p class="label-input">Data de Entrega</p>
+    <ion-item lines="none" class="modal-input-item date-item">
+      <ion-icon name="calendar-outline" slot="start" color="medium"></ion-icon>
+      <ion-input placeholder="Ex: 25/05" formControlName="dataEntrega"></ion-input>
+    </ion-item>
+
+    <p class="label-input">Nível de Urgência</p>
+    <ion-segment formControlName="urgencia" mode="ios" class="urgencia-segment">
+      <ion-segment-button value="baixa" class="btn-baixa">
+        <ion-label>Baixa</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="media" class="btn-media">
+        <ion-label>Média</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="alta" class="btn-alta">
+        <ion-label>Alta</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+
+    <ion-button 
+      expand="block" 
+      class="btn-salvar-tarefa" 
+      [disabled]="formTarefa.invalid"
+      (click)="salvar()">
+      {{ tarefa ? 'Salvar Alterações' : 'Adicionar ao Fluxo' }}
+    </ion-button>
+
+  </div>
+
+</ion-content>
