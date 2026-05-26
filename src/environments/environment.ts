@@ -1,19 +1,16 @@
 
 export const environment = {
   production: false,
-
-
-
   firebaseConfig: {
-    apiKey: "AIzaSyDWmLfAaL9jnp6DoqB-AfK4QljJrCxCBcM",
-    authDomain: "studflow-e0e86.firebaseapp.com",
-    projectId: "studflow-e0e86",
-    storageBucket: "studflow-e0e86.firebasestorage.app",
-    messagingSenderId: "32575240152",
-    appId: "1:32575240152:web:3bab339f20ec4e0cdaa4ad",
-    measurementId: "G-2WLVLNV06X"
-  }
-};
+      apiKey: "CHAVE_RESTRINGIDA_DE_TESTE", // Deixe um texto genérico aqui
+      authDomain: "studflow-XXXXX.firebaseapp.com",
+      projectId: "studflow-XXXXX",
+      storageBucket: "studflow-XXXXX.appspot.com",
+      messagingSenderId: "XXXXXXXXX",
+      appId: "1:XXXXXX:web:XXXXXX"
+    }
+  };
+
 
 
 
